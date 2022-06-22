@@ -23,7 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{0a4e3de0-547b-459f-94b1-18c345e5f00a}</ProjectGuid>
     <RootNamespace>MIRM</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -46,11 +46,11 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -81,6 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>Detours;$(IncludePath)</IncludePath>
+    <LibraryPath>Detours;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,22 +126,216 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/Zc:threadSafeInit %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Globals.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SDK\AIModule_Package.cpp" />
+    <ClCompile Include="SDK\AudioAnalyzer_Package.cpp" />
+    <ClCompile Include="SDK\AudioMixer_Package.cpp" />
+    <ClCompile Include="SDK\AudioPlatformConfiguration_Package.cpp" />
+    <ClCompile Include="SDK\AudioSynesthesia_Package.cpp" />
+    <ClCompile Include="SDK\BasicTypes_Package.cpp" />
+    <ClCompile Include="SDK\ChaosSolverEngine_Package.cpp" />
+    <ClCompile Include="SDK\Chaos_Package.cpp" />
+    <ClCompile Include="SDK\ClothingSystemRuntimeInterface_Package.cpp" />
+    <ClCompile Include="SDK\CoreUObject_Package.cpp" />
+    <ClCompile Include="SDK\DeveloperSettings_Package.cpp" />
+    <ClCompile Include="SDK\EasyFirebase_Package.cpp" />
+    <ClCompile Include="SDK\Engine_Package.cpp" />
+    <ClCompile Include="SDK\FieldSystemEngine_Package.cpp" />
+    <ClCompile Include="SDK\GameplayCameras_Package.cpp" />
+    <ClCompile Include="SDK\GameplayTags_Package.cpp" />
+    <ClCompile Include="SDK\GameplayTasks_Package.cpp" />
+    <ClCompile Include="SDK\GeometryCollectionEngine_Package.cpp" />
+    <ClCompile Include="SDK\InputCore_Package.cpp" />
+    <ClCompile Include="SDK\InteractiveToolsFramework_Package.cpp" />
+    <ClCompile Include="SDK\MirM_Package.cpp" />
+    <ClCompile Include="SDK\MovieSceneTracks_Package.cpp" />
+    <ClCompile Include="SDK\MovieScene_Package.cpp" />
+    <ClCompile Include="SDK\NavigationSystem_Package.cpp" />
+    <ClCompile Include="SDK\PacketHandler_Package.cpp" />
+    <ClCompile Include="SDK\PhysicsCore_Package.cpp" />
+    <ClCompile Include="SDK\PropertyAccess_Package.cpp" />
+    <ClCompile Include="SDK\PropertyPath_Package.cpp" />
+    <ClCompile Include="SDK\ProtocolPlugins_Package.cpp" />
+    <ClCompile Include="SDK\SignificanceManager_Package.cpp" />
+    <ClCompile Include="SDK\SlateCore_Package.cpp" />
+    <ClCompile Include="SDK\Slate_Package.cpp" />
+    <ClCompile Include="SDK\Synthesis_Package.cpp" />
+    <ClCompile Include="SDK\UMG_Package.cpp" />
+    <ClCompile Include="SDK\WebBrowserWidget_Package.cpp" />
+    <ClCompile Include="SDK\WebBrowser_Package.cpp" />
+    <ClCompile Include="Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Detours\detours.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="SDK.h" />
+    <ClInclude Include="SDK\AIModule_Classes.h" />
+    <ClInclude Include="SDK\AIModule_Package.h" />
+    <ClInclude Include="SDK\AIModule_Params.h" />
+    <ClInclude Include="SDK\AIModule_Structs.h" />
+    <ClInclude Include="SDK\AudioAnalyzer_Classes.h" />
+    <ClInclude Include="SDK\AudioAnalyzer_Package.h" />
+    <ClInclude Include="SDK\AudioAnalyzer_Params.h" />
+    <ClInclude Include="SDK\AudioAnalyzer_Structs.h" />
+    <ClInclude Include="SDK\AudioMixer_Classes.h" />
+    <ClInclude Include="SDK\AudioMixer_Package.h" />
+    <ClInclude Include="SDK\AudioMixer_Params.h" />
+    <ClInclude Include="SDK\AudioMixer_Structs.h" />
+    <ClInclude Include="SDK\AudioPlatformConfiguration_Classes.h" />
+    <ClInclude Include="SDK\AudioPlatformConfiguration_Package.h" />
+    <ClInclude Include="SDK\AudioPlatformConfiguration_Params.h" />
+    <ClInclude Include="SDK\AudioPlatformConfiguration_Structs.h" />
+    <ClInclude Include="SDK\AudioSynesthesia_Classes.h" />
+    <ClInclude Include="SDK\AudioSynesthesia_Package.h" />
+    <ClInclude Include="SDK\AudioSynesthesia_Params.h" />
+    <ClInclude Include="SDK\AudioSynesthesia_Structs.h" />
+    <ClInclude Include="SDK\BasicTypes_Classes.h" />
+    <ClInclude Include="SDK\BasicTypes_Package.h" />
+    <ClInclude Include="SDK\BasicTypes_Structs.h" />
+    <ClInclude Include="SDK\ChaosSolverEngine_Classes.h" />
+    <ClInclude Include="SDK\ChaosSolverEngine_Package.h" />
+    <ClInclude Include="SDK\ChaosSolverEngine_Params.h" />
+    <ClInclude Include="SDK\ChaosSolverEngine_Structs.h" />
+    <ClInclude Include="SDK\Chaos_Classes.h" />
+    <ClInclude Include="SDK\Chaos_Package.h" />
+    <ClInclude Include="SDK\Chaos_Params.h" />
+    <ClInclude Include="SDK\Chaos_Structs.h" />
+    <ClInclude Include="SDK\ClothingSystemRuntimeInterface_Classes.h" />
+    <ClInclude Include="SDK\ClothingSystemRuntimeInterface_Package.h" />
+    <ClInclude Include="SDK\ClothingSystemRuntimeInterface_Params.h" />
+    <ClInclude Include="SDK\ClothingSystemRuntimeInterface_Structs.h" />
+    <ClInclude Include="SDK\CoreUObject_Classes.h" />
+    <ClInclude Include="SDK\CoreUObject_Package.h" />
+    <ClInclude Include="SDK\CoreUObject_Params.h" />
+    <ClInclude Include="SDK\CoreUObject_Structs.h" />
+    <ClInclude Include="SDK\DeveloperSettings_Classes.h" />
+    <ClInclude Include="SDK\DeveloperSettings_Package.h" />
+    <ClInclude Include="SDK\DeveloperSettings_Params.h" />
+    <ClInclude Include="SDK\DeveloperSettings_Structs.h" />
+    <ClInclude Include="SDK\EasyFirebase_Classes.h" />
+    <ClInclude Include="SDK\EasyFirebase_Package.h" />
+    <ClInclude Include="SDK\EasyFirebase_Params.h" />
+    <ClInclude Include="SDK\EasyFirebase_Structs.h" />
+    <ClInclude Include="SDK\Engine_Classes.h" />
+    <ClInclude Include="SDK\Engine_Package.h" />
+    <ClInclude Include="SDK\Engine_Params.h" />
+    <ClInclude Include="SDK\Engine_Structs.h" />
+    <ClInclude Include="SDK\FieldSystemEngine_Classes.h" />
+    <ClInclude Include="SDK\FieldSystemEngine_Package.h" />
+    <ClInclude Include="SDK\FieldSystemEngine_Params.h" />
+    <ClInclude Include="SDK\FieldSystemEngine_Structs.h" />
+    <ClInclude Include="SDK\GameplayCameras_Classes.h" />
+    <ClInclude Include="SDK\GameplayCameras_Package.h" />
+    <ClInclude Include="SDK\GameplayCameras_Params.h" />
+    <ClInclude Include="SDK\GameplayCameras_Structs.h" />
+    <ClInclude Include="SDK\GameplayTags_Classes.h" />
+    <ClInclude Include="SDK\GameplayTags_Package.h" />
+    <ClInclude Include="SDK\GameplayTags_Params.h" />
+    <ClInclude Include="SDK\GameplayTags_Structs.h" />
+    <ClInclude Include="SDK\GameplayTasks_Classes.h" />
+    <ClInclude Include="SDK\GameplayTasks_Package.h" />
+    <ClInclude Include="SDK\GameplayTasks_Params.h" />
+    <ClInclude Include="SDK\GameplayTasks_Structs.h" />
+    <ClInclude Include="SDK\GeometryCollectionEngine_Classes.h" />
+    <ClInclude Include="SDK\GeometryCollectionEngine_Package.h" />
+    <ClInclude Include="SDK\GeometryCollectionEngine_Params.h" />
+    <ClInclude Include="SDK\GeometryCollectionEngine_Structs.h" />
+    <ClInclude Include="SDK\InputCore_Classes.h" />
+    <ClInclude Include="SDK\InputCore_Package.h" />
+    <ClInclude Include="SDK\InputCore_Params.h" />
+    <ClInclude Include="SDK\InputCore_Structs.h" />
+    <ClInclude Include="SDK\InteractiveToolsFramework_Classes.h" />
+    <ClInclude Include="SDK\InteractiveToolsFramework_Package.h" />
+    <ClInclude Include="SDK\InteractiveToolsFramework_Params.h" />
+    <ClInclude Include="SDK\InteractiveToolsFramework_Structs.h" />
+    <ClInclude Include="SDK\MirM_Classes.h" />
+    <ClInclude Include="SDK\MirM_Package.h" />
+    <ClInclude Include="SDK\MirM_Params.h" />
+    <ClInclude Include="SDK\MirM_Structs.h" />
+    <ClInclude Include="SDK\MovieSceneTracks_Classes.h" />
+    <ClInclude Include="SDK\MovieSceneTracks_Package.h" />
+    <ClInclude Include="SDK\MovieSceneTracks_Params.h" />
+    <ClInclude Include="SDK\MovieSceneTracks_Structs.h" />
+    <ClInclude Include="SDK\MovieScene_Classes.h" />
+    <ClInclude Include="SDK\MovieScene_Package.h" />
+    <ClInclude Include="SDK\MovieScene_Params.h" />
+    <ClInclude Include="SDK\MovieScene_Structs.h" />
+    <ClInclude Include="SDK\NavigationSystem_Classes.h" />
+    <ClInclude Include="SDK\NavigationSystem_Package.h" />
+    <ClInclude Include="SDK\NavigationSystem_Params.h" />
+    <ClInclude Include="SDK\NavigationSystem_Structs.h" />
+    <ClInclude Include="SDK\PacketHandler_Classes.h" />
+    <ClInclude Include="SDK\PacketHandler_Package.h" />
+    <ClInclude Include="SDK\PacketHandler_Params.h" />
+    <ClInclude Include="SDK\PacketHandler_Structs.h" />
+    <ClInclude Include="SDK\PhysicsCore_Classes.h" />
+    <ClInclude Include="SDK\PhysicsCore_Package.h" />
+    <ClInclude Include="SDK\PhysicsCore_Params.h" />
+    <ClInclude Include="SDK\PhysicsCore_Structs.h" />
+    <ClInclude Include="SDK\PropertyAccess_Classes.h" />
+    <ClInclude Include="SDK\PropertyAccess_Package.h" />
+    <ClInclude Include="SDK\PropertyAccess_Params.h" />
+    <ClInclude Include="SDK\PropertyAccess_Structs.h" />
+    <ClInclude Include="SDK\PropertyPath_Classes.h" />
+    <ClInclude Include="SDK\PropertyPath_Package.h" />
+    <ClInclude Include="SDK\PropertyPath_Params.h" />
+    <ClInclude Include="SDK\PropertyPath_Structs.h" />
+    <ClInclude Include="SDK\ProtocolPlugins_Classes.h" />
+    <ClInclude Include="SDK\ProtocolPlugins_Package.h" />
+    <ClInclude Include="SDK\ProtocolPlugins_Params.h" />
+    <ClInclude Include="SDK\ProtocolPlugins_Structs.h" />
+    <ClInclude Include="SDK\SignificanceManager_Classes.h" />
+    <ClInclude Include="SDK\SignificanceManager_Package.h" />
+    <ClInclude Include="SDK\SignificanceManager_Params.h" />
+    <ClInclude Include="SDK\SignificanceManager_Structs.h" />
+    <ClInclude Include="SDK\SlateCore_Classes.h" />
+    <ClInclude Include="SDK\SlateCore_Package.h" />
+    <ClInclude Include="SDK\SlateCore_Params.h" />
+    <ClInclude Include="SDK\SlateCore_Structs.h" />
+    <ClInclude Include="SDK\Slate_Classes.h" />
+    <ClInclude Include="SDK\Slate_Package.h" />
+    <ClInclude Include="SDK\Slate_Params.h" />
+    <ClInclude Include="SDK\Slate_Structs.h" />
+    <ClInclude Include="SDK\Synthesis_Classes.h" />
+    <ClInclude Include="SDK\Synthesis_Package.h" />
+    <ClInclude Include="SDK\Synthesis_Params.h" />
+    <ClInclude Include="SDK\Synthesis_Structs.h" />
+    <ClInclude Include="SDK\UMG_Classes.h" />
+    <ClInclude Include="SDK\UMG_Package.h" />
+    <ClInclude Include="SDK\UMG_Params.h" />
+    <ClInclude Include="SDK\UMG_Structs.h" />
+    <ClInclude Include="SDK\WebBrowserWidget_Classes.h" />
+    <ClInclude Include="SDK\WebBrowserWidget_Package.h" />
+    <ClInclude Include="SDK\WebBrowserWidget_Params.h" />
+    <ClInclude Include="SDK\WebBrowserWidget_Structs.h" />
+    <ClInclude Include="SDK\WebBrowser_Classes.h" />
+    <ClInclude Include="SDK\WebBrowser_Package.h" />
+    <ClInclude Include="SDK\WebBrowser_Params.h" />
+    <ClInclude Include="SDK\WebBrowser_Structs.h" />
+    <ClInclude Include="Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Detours\detours.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
