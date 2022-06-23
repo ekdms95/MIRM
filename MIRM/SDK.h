@@ -53,6 +53,17 @@
 #include "SDK/WebBrowserWidget_Package.h"
 #include "SDK/MirM_Package.h"
 
+//추가
+#include "SDK/HUD_Inventory_Set_Package.h" // 74
+#include "SDK/CM_Equip_Icon_Package.h" // 87
+#include "SDK/HUD_IV_Sorting_Package.h" // 101
+#include "SDK/CM_Item_Icon_Package.h" // 255
+#include "SDK/CM_IV_Frame_Package.h" // 344
+#include "SDK/HUD_IV_Frame_Package.h" // 353
+#include "SDK/HUD_LIST_Item_Package.h" // 375
+#include "SDK/HUD_IV_Function_Package.h" // 399
+#include "SDK/HUD_IV_Decomposition_Package.h" // 421
+
 //#include "SDK/DeveloperSettings_Package.h"
 //#include "SDK/Chaos_Package.h"
 //#include "SDK/PhysicsCore_Package.h"

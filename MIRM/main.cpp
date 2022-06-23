@@ -56,6 +56,9 @@ void __fastcall HookedPe(UObject* obj, UFunction* func, void* pParams) {
 				PrintFunc.find("CheckDrawType") == std::string::npos &&
 				PrintFunc.find("ReceiveBeginPlay") == std::string::npos &&
 				PrintFunc.find("NamTag") == std::string::npos &&
+				PrintFunc.find("Title") == std::string::npos &&
+				PrintFunc.find("SetSlotIdx") == std::string::npos &&//EFFECT
+				PrintFunc.find("Destruct") == std::string::npos &&
 				PrintFunc.find("OnSetText") == std::string::npos
 				) 
 			{
